@@ -34,11 +34,13 @@ public class LandingPageObject extends AbstractComponents {
 	@FindBy(id = "login")
 	WebElement submit;
 	
-	public void performlogin(String email , String passwd) {
+	public ProductCatalogue performlogin(String email , String passwd) {
 		
 		userEmail.sendKeys(email);
 		userPassword.sendKeys(passwd);
 		submit.click();
+		ProductCatalogue productCatalog = new ProductCatalogue(driver);
+		return productCatalog;
 	}
 	
 	public void hitUrl() {

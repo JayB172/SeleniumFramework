@@ -12,7 +12,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import SeleniumFramework.pageobjects.CartItems;
 import SeleniumFramework.pageobjects.LandingPageObject;
+import SeleniumFramework.pageobjects.ProductCatalogue;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
@@ -37,55 +39,62 @@ public class StandAloneTest {
 		
 		landingPageObject.hitUrl();
 		
-		landingPageObject.performlogin("123abc@gmail.com" , "Abc@123456");
+		ProductCatalogue productCatalog = landingPageObject.performlogin("123abc@gmail.com" , "Abc@123456");
 		
-//		driver.findElement(By.id("userEmail")).sendKeys("123abc@gmail.com");
-//		driver.findElement(By.id("userPassword")).sendKeys("Abc@123456");
-//		driver.findElement(By.id("login")).click();
+		 productCatalog.productName("ADIDAS ORIGINAL");
 		
-		WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(5));
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".mb-3")));
+		 CartItems cartItem = productCatalog.addProductToCart("ADIDAS ORIGINAL");	
+
+		cartItem.clickCartButton();		
 		
-		List<WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
-		
-		WebElement prod = products.stream().filter(product -> product.findElement(By.cssSelector("b")).getText().equals("ADIDAS ORIGINAL")).findFirst().orElse(null);
-		
-		prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
-		
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#toast-container")));
-		
-		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
-		
-		driver.findElement(By.cssSelector("[routerlink= '/dashboard/cart']")).click();
-		
-		List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
-		
-		boolean match = cartProducts.stream().anyMatch(product -> product.getText().equals("ADIDAS ORIGINAL"));
+		boolean match = cartItem.checkSelectedProduct("ADIDAS ORIGINAL");
 		
 		Assert.assertTrue(match, "Matched");
 		
-		driver.findElement(By.cssSelector(".subtotal .btn")).click();
-		
-		Actions a = new Actions(driver);
-		
-		a.sendKeys(driver.findElement(By.cssSelector(".user__address .input")), "India").build().perform();
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
-		
-		driver.findElement(By.cssSelector(".ta-item:nth-of-type(2)")).click();
-		
-		driver.findElement(By.cssSelector(".btnn")).click();
-		
-		String orderId = driver.findElement(By.cssSelector("table label.ng-star-inserted")).getText();
-		System.out.println(orderId);
-		driver.close();
-		
-		
-		
-		
-		
-		
-		
+		cartItem.selectCountry("India", ".ta-item:nth-of-type(2)");		
+
+		cartItem.getOrderId();	
 	}
 
 }
+
+/*
+ * //driver.findElement(By.id("userEmail")).sendKeys("123abc@gmail.com");
+		//driver.findElement(By.id("userPassword")).sendKeys("Abc@123456");
+		//driver.findElement(By.id("login")).click();
+		
+		
+		//List<WebElement> products = productCatalog.getProductList();
+		
+		//WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(5));
+		//wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(".mb-3")));
+		//List<WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
+				
+		//WebElement prod = products.stream().filter(product -> product.findElement(By.cssSelector("b")).getText().equals("ADIDAS ORIGINAL")).findFirst().orElse(null);
+			
+		//prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
+					
+		//wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#toast-container")));
+			
+			
+		//wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
+		//driver.findElement(By.cssSelector("[routerlink= '/dashboard/cart']")).click();
+		//List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
+		
+		//boolean match = cartProducts.stream().anyMatch(product -> product.getText().equals("ADIDAS ORIGINAL"));
+		
+		//Assert.assertTrue(match, "Matched");
+		
+		//driver.findElement(By.cssSelector(".subtotal .btn")).click();
+				
+		//Actions a = new Actions(driver);
+		
+		//a.sendKeys(driver.findElement(By.cssSelector(".user__address .input")), "India").build().perform();
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
+		
+		//driver.findElement(By.cssSelector(".ta-item:nth-of-type(2)")).click();
+		//driver.findElement(By.cssSelector(".btnn")).click();
+		
+		//String orderId = driver.findElement(By.cssSelector("table label.ng-star-inserted")).getText();
+ * */

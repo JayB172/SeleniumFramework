@@ -31,7 +31,13 @@ public class ProductCatalogue extends AbstractComponents {
 	@FindBy(css = ".mb-3")
 	List<WebElement> products;
 	
+	@FindBy(css = ".ng-animating")
+	WebElement loading;
+	
 	By findProducts = By.cssSelector(".mb-3");
+	By addToCart = By.cssSelector(".card-body button:last-of-type");
+	By toastContainer = By.cssSelector("#toast-container");
+	By loadingAnimation = By.cssSelector(".ng-animating");
 	
 	
 	public List<WebElement> getProductList(){
@@ -40,6 +46,25 @@ public class ProductCatalogue extends AbstractComponents {
 		
 		return products;
 	}
+	
+	public WebElement productName(String productName) {
+		
+		WebElement prod = products.stream().filter(product -> product.findElement(By.cssSelector("b")).getText().equals("ADIDAS ORIGINAL")).findFirst().orElse(null);
+		return prod;
+	}
+	
+	public CartItems addProductToCart(String productName) {
+		WebElement prod = productName(productName);
+		prod.findElement(addToCart).click();
+		waitForElements(toastContainer);
+		waitForElementToDisappear(loading);
+		CartItems cartItem = new CartItems(driver);
+		return cartItem;
+
+		
+	}
+
+										
 	
 
 }
