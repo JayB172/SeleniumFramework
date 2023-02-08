@@ -49,12 +49,13 @@ public class ProductCatalogue extends AbstractComponents {
 	
 	public WebElement productName(String productName) {
 		
-		WebElement prod = products.stream().filter(product -> product.findElement(By.cssSelector("b")).getText().equals("ADIDAS ORIGINAL")).findFirst().orElse(null);
+		WebElement prod = products.stream().filter(product -> product.findElement(By.cssSelector("b")).getText().equals(productName)).findFirst().orElse(null);
 		return prod;
 	}
 	
 	public CartItems addProductToCart(String productName) {
 		WebElement prod = productName(productName);
+		waitForElements(addToCart);
 		prod.findElement(addToCart).click();
 		waitForElements(toastContainer);
 		waitForElementToDisappear(loading);

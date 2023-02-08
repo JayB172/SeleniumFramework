@@ -1,59 +1,68 @@
 package SeleniumFramework;
 
-import java.time.Duration;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
+import SeleniumFramework.TestComponents.BaseTest;
 import SeleniumFramework.pageobjects.CartItems;
-import SeleniumFramework.pageobjects.LandingPageObject;
 import SeleniumFramework.pageobjects.ProductCatalogue;
-import io.github.bonigarcia.wdm.WebDriverManager;
+ 
 
 
+public class StandAloneTest extends BaseTest {
+	
+	@Test(dataProvider = "getData")
 
-public class StandAloneTest {
-
-	public static void main(String[] args) {
+	public void submitOrder(HashMap<String , String> input) throws IOException {
 		// TODO Auto-generated method stub
+//		
+//		WebDriverManager.chromedriver().setup();
+//		
+//		//Create a driver object
+//		WebDriver driver = new ChromeDriver();
+//		
+//		//Create a landing page object for using page object model
+//		
+//		LandingPageObject landingPageObject = new LandingPageObject(driver);
+//		
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//		
+//		driver.manage().window().maximize();
+//		
+//		landingPageObject.hitUrl();
 		
-		WebDriverManager.chromedriver().setup();
 		
-		//Create a driver object
-		WebDriver driver = new ChromeDriver();
-		
-		//Create a landing page object for using page object model
-		
-		LandingPageObject landingPageObject = new LandingPageObject(driver);
-		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		
-		driver.manage().window().maximize();
-		
-		landingPageObject.hitUrl();
 		
 		ProductCatalogue productCatalog = landingPageObject.performlogin("123abc@gmail.com" , "Abc@123456");
 		
-		 productCatalog.productName("ADIDAS ORIGINAL");
+		 productCatalog.productName(input.get("product"));
 		
-		 CartItems cartItem = productCatalog.addProductToCart("ADIDAS ORIGINAL");	
+		 CartItems cartItem = productCatalog.addProductToCart(input.get("product"));	
 
 		cartItem.clickCartButton();		
 		
-		boolean match = cartItem.checkSelectedProduct("ADIDAS ORIGINAL");
+		boolean match = cartItem.checkSelectedProduct(input.get("product"));
 		
-		Assert.assertTrue(match, "Matched");
 		
-		cartItem.selectCountry("India", ".ta-item:nth-of-type(2)");		
+		
+		cartItem.selectCountry(input.get("country"), ".ta-item:nth-of-type(2)");		
 
 		cartItem.getOrderId();	
+	}
+	
+	@DataProvider
+	public Object[][] getData() throws IOException {
+		
+		List<HashMap<String , String>> data = getJsonDataToMap(System.getProperty("user.dir") + "//src//test//java//SeleniumFramework//Data//Data.json");
+		
+		return new Object[][] {{data.get(0)} , {data.get(1)} , {data.get(2)}};
 	}
 
 }

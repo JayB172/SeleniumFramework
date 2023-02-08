@@ -12,6 +12,7 @@ public class AbstractComponents {
 	
 	WebDriver driver;
 	
+	
 	public AbstractComponents(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -21,6 +22,12 @@ public class AbstractComponents {
 		WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(findElement));
 	}
+	
+	public void waitForWebElement(WebElement elem) {
+		WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOf(elem));
+	}
+	
 	
 	public void  waitForElementToDisappear(WebElement elemt) {
 		WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(5));

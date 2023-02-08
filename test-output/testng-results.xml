@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="41976" started-at="2023-02-08T15:01:43 IST" finished-at="2023-02-08T15:02:25 IST">
+    <groups>
+    </groups>
+    <test name="Login Error Validation" duration-ms="6597" started-at="2023-02-08T15:01:43 IST" finished-at="2023-02-08T15:01:50 IST">
+      <class name="SeleniumFramework.ErrorValidationTest">
+        <test-method status="PASS" signature="launchApplication()[pri:0, instance:SeleniumFramework.ErrorValidationTest@8646db9]" name="launchApplication" is-config="true" duration-ms="6018" started-at="2023-02-08T15:01:44 IST" finished-at="2023-02-08T15:01:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method status="PASS" signature="submitOrder()[pri:0, instance:SeleniumFramework.ErrorValidationTest@8646db9]" name="submitOrder" duration-ms="458" started-at="2023-02-08T15:01:50 IST" finished-at="2023-02-08T15:01:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitOrder -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:SeleniumFramework.ErrorValidationTest@8646db9]" name="tearDown" is-config="true" duration-ms="82" started-at="2023-02-08T15:01:50 IST" finished-at="2023-02-08T15:01:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- SeleniumFramework.ErrorValidationTest -->
+    </test> <!-- Login Error Validation -->
+    <test name="Submit Order" duration-ms="35355" started-at="2023-02-08T15:01:50 IST" finished-at="2023-02-08T15:02:25 IST">
+      <class name="SeleniumFramework.StandAloneTest">
+        <test-method status="PASS" signature="launchApplication()[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="launchApplication" is-config="true" duration-ms="2238" started-at="2023-02-08T15:01:50 IST" finished-at="2023-02-08T15:01:53 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method status="PASS" signature="submitOrder(java.util.HashMap)[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="submitOrder" duration-ms="9275" started-at="2023-02-08T15:01:53 IST" data-provider="getData" finished-at="2023-02-08T15:02:02 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{country=India, product=ADIDAS ORIGINAL}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitOrder -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="tearDown" is-config="true" duration-ms="168" started-at="2023-02-08T15:02:02 IST" finished-at="2023-02-08T15:02:02 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="launchApplication()[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="launchApplication" is-config="true" duration-ms="2319" started-at="2023-02-08T15:02:02 IST" finished-at="2023-02-08T15:02:04 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method status="PASS" signature="submitOrder(java.util.HashMap)[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="submitOrder" duration-ms="9183" started-at="2023-02-08T15:02:04 IST" data-provider="getData" finished-at="2023-02-08T15:02:14 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{country=US, product=ZARA COAT 3}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitOrder -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="tearDown" is-config="true" duration-ms="159" started-at="2023-02-08T15:02:14 IST" finished-at="2023-02-08T15:02:14 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="launchApplication()[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="launchApplication" is-config="true" duration-ms="2297" started-at="2023-02-08T15:02:14 IST" finished-at="2023-02-08T15:02:16 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchApplication -->
+        <test-method status="PASS" signature="submitOrder(java.util.HashMap)[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="submitOrder" duration-ms="9166" started-at="2023-02-08T15:02:16 IST" data-provider="getData" finished-at="2023-02-08T15:02:25 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{country=CH, product=IPHONE 13 PRO}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- submitOrder -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:SeleniumFramework.StandAloneTest@5fdba6f9]" name="tearDown" is-config="true" duration-ms="176" started-at="2023-02-08T15:02:25 IST" finished-at="2023-02-08T15:02:25 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- SeleniumFramework.StandAloneTest -->
+    </test> <!-- Submit Order -->
+  </suite> <!-- Suite -->
+</testng-results>
